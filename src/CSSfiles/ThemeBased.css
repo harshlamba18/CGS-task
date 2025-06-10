@@ -1,0 +1,20 @@
+:root {
+  --bg-image: url("/public/images/darkloginbg2.png");
+  --bg-color: #1b1b1b;
+  --content-box: #222831;
+  --text-color: #f4ebc1;
+  --content-container-shadow: 0 0 1vw rgba(0, 0, 0, 0.7);
+  --dbBox-shadow: 0px 0px 10px #000;
+  --input-bg: #383838;
+  --profile-photo: url("/public/images/dark.png");
+}
+.lightmode {
+  --bg-image: url("/public/images/lightloginbg2.png");
+  --bg-color: #f0ebe3;
+  --content-box: #f3d0d7;
+  --text-color: #212121;
+  --content-container-shadow: 0 0 1vw rgba(181, 243, 181, 0.753);
+  --dbBox-shadow: 0px 0px 10px #ccc;
+  --input-bg: #eccdb4;
+  --profile-photo: url("/public/images/light.png");
+}
