@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// SignUp component for user registration
+
+// Importing necessary css files and libraries
 import "../CSSfiles/LogSign.css";
 import "../CSSfiles/ThemeBased.css";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Importing React hooks and libraries for navigation and notifications
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -18,7 +24,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {                                           // Function to handle form submission
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const alreadyExists = users.some((u) => u.email === email);
     e.preventDefault();

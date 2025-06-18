@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../CSSfiles/LogSign.css";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+// This component allows users to edit their profile information, including their profile picture, username, bio
+
+// Importing necessary css files and libraries
 import "../CSSfiles/Dashboard.css";
 import "../CSSfiles/EditProfile.css";
 import "../CSSfiles/ThemeBased.css";
+import "../CSSfiles/LogSign.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// Importing React hooks and libraries for navigation and notifications
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const EditProfile = () => {
-  const [user, setUser] = useState(null);
-  const [userDetails, setUserDetails] = useState(null);
-  const [username, setUsername] = useState("");
-  const [showChangePassword, setShowChangePassword] = useState(false);
+  const [user, setUser] = useState(null);                                 // State to hold user information
+  const [userDetails, setUserDetails] = useState(null);                   // State to hold user details like bio, gender, and date of birth
+  const [username, setUsername] = useState("");                           // State to hold username
+  const [showChangePassword, setShowChangePassword] = useState(false);    // State to toggle the change password form visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +31,7 @@ const EditProfile = () => {
     }
   }, [navigate]);
 
-  const handleEdit = () => {
+  const handleEdit = () => {                                         // Function to handle profile edit
     if (
       !username.trim() ||
       !userDetails.bio.trim() ||
@@ -50,7 +56,7 @@ const EditProfile = () => {
     navigate("/dashboard");
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e) => {                                      // Function to handle image upload
     const file = e.target.files[0];
     if (file) {
       if (file.size > 2 * 1024 * 1024) {
@@ -70,7 +76,7 @@ const EditProfile = () => {
     }
   };
 
-  const ChangePassword = () => {
+  const ChangePassword = () => {                                         // Component to handle password change
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -149,6 +155,7 @@ const EditProfile = () => {
       </div>
     );
   };
+
   const getGenderClass = (gender) => {
     switch (gender) {
       case "Male":
@@ -244,7 +251,7 @@ const EditProfile = () => {
                 id="dob"
                 type="date"
                 placeholder="Date of Birth"
-                max={new Date().toISOString().split("T")[0]}
+                max={new Date().toISOString().split("T")[0]}                // Ensuring the date of birth is not in the future
                 value={userDetails.dob}
                 onChange={(e) =>
                   setUserDetails({ ...userDetails, dob: e.target.value })

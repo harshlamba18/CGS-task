@@ -1,16 +1,22 @@
+// Dashboard component for displaying user profile information
+
+// Importing necessary css files and libraries
 import "../CSSfiles/LogSign.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../CSSfiles/Dashboard.css";
 import "../CSSfiles/ThemeBased.css";
+
+// Importing React hooks and libraries for navigation and notifications
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Dashboard = () => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
-  useEffect(() => {
+const Dashboard = () => {
+  const [user, setUser] = useState(null);                                    // State to hold user information
+  const navigate = useNavigate();                                            // Hook to programmatically navigate between routes
+
+  useEffect(() => {                                                          // Effect to check if user is logged in when component mounts
     const storedUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (!storedUser) {
       navigate("/login");
@@ -19,12 +25,13 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
+  const handleLogout = () => {                                                // Function to handle user logout
     localStorage.removeItem("loggedInUser");
     toast.success("Logged out successfully");
     navigate("/login");
   };
-  const getGenderClass = (gender) => {
+
+  const getGenderClass = (gender) => {                                         // Function to return a className according to the gender of user 
     switch (gender) {
       case "Male":
         return "male";
@@ -41,9 +48,9 @@ const Dashboard = () => {
         <div className="cover-container">
           <div className="cover"></div>
           <div
-            className={`profilephoto ${getGenderClass(user.details.gender)}`}
+            className={`profilephoto ${getGenderClass(user.details.gender)}`}     // class is added to it according to the gender of user
           >
-            {user.details.profilepic ? (
+            {user.details.profilepic ? (                                          
               <img
                 src={user.details.profilepic}
                 alt="Profile"

@@ -1,26 +1,33 @@
+//  Login page component for user authentication
+
+// Importing necessary css files and libraries
 import "../CSSfiles/LogSign.css";
 import "../CSSfiles/ThemeBased.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// Importing React hooks and libraries for navigation and notifications
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  const details = {
+
+function Login() {
+  const [email, setEmail] = useState("");                  // State to hold email input
+  const [password, setPassword] = useState("");            // State to hold password input
+  const navigate = useNavigate();                          // Hook to programmatically navigate between routes
+
+  const details = {                                        // Object to hold user details
     bio: "",
     dob: "",
     gender: "",
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {                                          // Function to handle form submission
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
-    e.preventDefault();
+    e.preventDefault();                                                 // Prevent default form submission behavior
     if (email && password) {
       if (user) {
         toast.success("Logged in!");
@@ -37,6 +44,7 @@ function Login() {
       toast.error("Please enter all fields");
     }
   };
+
   return (
     <div className="login">
       <div className="loginbox">
@@ -60,12 +68,12 @@ function Login() {
         <div className="loginfooter">
           <p className="signup-link">
             Don't have an account?{" "}
-            <Link
+            <Link                                                         // Link component from react-router-dom to navigate to the signup page
               to={"/signup"}
               style={{ color: "#007bff", textDecoration: "none" }}
             >
               Sign Up
-            </Link>{" "}
+            </Link>{" "}                                                 
           </p>
         </div>
       </div>
