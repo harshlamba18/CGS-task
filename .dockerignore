@@ -1,2 +1,3 @@
 # This file specifies files and directories to ignore when building a Docker image.
-node_modules            
+node_modules
+build            
